@@ -1,6 +1,6 @@
 #include <iostream>
 #include "address_data.h"
-#include "AddressBookApplication.h"
+#include "address.h"
 
 using namespace std;
 
@@ -9,11 +9,7 @@ using namespace std;
 
 int main(){
 
-    AddressBookApplication a;
-    Menu b;
-
-    b.getMenu();
-
+   
     return 0;
 }
 

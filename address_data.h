@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 //clase finalizada
@@ -20,9 +23,9 @@ public:
     AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, int _codigoPostal, string _correoElectronico, int _numeroTelefono){
        this->nombre = _nombre;
         this->apellido = _apellido;
-        this->calle = _calle;
-        this->ciudad = _ciudad;
-        this->estado = _estado;
+        this->calle =  _calle;
+        this->ciudad =  _ciudad;
+        this->estado =  _estado;
         this->codigoPostal = _codigoPostal;
         this->correoElectronico = _correoElectronico;
         this->numeroTelefono = _numeroTelefono;
@@ -95,14 +98,22 @@ public:
 
 
 
+
 };
 
 //aqui se hara la logica de buscar contactos y metodos para gestiones la informacion
 class AddresBook{
 private:
+    vector<AddressEntry> entradasDirectorios;
 
 public:
+    void createAddres(AddressEntry& entradas){
+        entradasDirectorios.push_back(entradas);
+    }
 
+    void searchAddres(AddressEntry& entradas){
+        //entradasDirectorios.
+    }
 
 };
 
