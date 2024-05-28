@@ -38,22 +38,36 @@ public:
 class AddressBookApplication{
 private:
     Menu menu;
+    AddressEntry nuevasDirecciones;
 
 public:
 
-    bool correr = true;
-
-    void seleccionarOpcion(){
-        while(correr){
-            char seleccionMenu = menu.setOpcion();
-            if(seleccionMenu != 'f'){
-                
-            }
-            cout << "bye"<< endl;
+    AddressBookApplication(AddressEntry& nuevasDirecciones){
 
     }
+
+    void seleccionarOpcion(){
+        bool control = true;
+        while(control){
+            menu.getMenu();
+            char opcion = menu.setOpcion();
+            
+            switch (opcion){
+                case 'a': /* codigo  */     ; break;
+                case 'b': /* codigo  */     ; break;
+                case 'c': /* codigo  */     ; break;
+                case 'd': /* codigo  */     ; break;
+                case 'e': nuevasDirecciones.toString(); break;
+                case 'f': control = false; cout<<"Hasta Luego..."<< endl;    ; break;
+            };
+        };
     };
 
 };
 
 #endif //ADDRESSBOOKAPLICATION_H
+
+
+
+// notas, lo que falla ahora mismo es el cosntructor que no declaramos en AddressBookApplication
+// por lo que es modificar esto y despues podremos llamar a la clase en la funcion main()
