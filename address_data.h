@@ -102,16 +102,28 @@ public:
 //aqui se hara la logica de buscar contactos y metodos para gestiones la informacion
 class AddresBook{
 private:
+    AddressEntry usuarios;
     vector<AddressEntry> entradasDirectorios;
 
 public:
+
+
+
     void createAddres(AddressEntry& entradas){
         entradasDirectorios.push_back(entradas);
-    }
+    };
 
     void searchAddres(AddressEntry& entradas){
         //entradasDirectorios.
-    }
+    };
+
+    void deleteAddres(){
+
+    };
+
+    void showAddres(){
+        usuarios.toString();  
+    };
 
 };
 

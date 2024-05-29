@@ -1,6 +1,7 @@
 #ifndef ADDRESSBOOKAPLICATION_H
 #define ADDRESSBOOKAPLICATION_H
 #include <iostream>
+#include "address_data.h"
 
 using namespace std;
 
@@ -38,13 +39,9 @@ public:
 class AddressBookApplication{
 private:
     Menu menu;
-    AddressEntry nuevasDirecciones;
-
+    AddresBook logica;
 public:
-
-    AddressBookApplication(AddressEntry& nuevasDirecciones){
-
-    }
+    
 
     void seleccionarOpcion(){
         bool control = true;
@@ -57,7 +54,7 @@ public:
                 case 'b': /* codigo  */     ; break;
                 case 'c': /* codigo  */     ; break;
                 case 'd': /* codigo  */     ; break;
-                case 'e': nuevasDirecciones.toString(); break;
+                case 'e': logica.showAddres()  ; break;
                 case 'f': control = false; cout<<"Hasta Luego..."<< endl;    ; break;
             };
         };
