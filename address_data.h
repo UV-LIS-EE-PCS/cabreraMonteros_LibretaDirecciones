@@ -1,10 +1,9 @@
 #ifndef ADDRESS_DATA_H
 #define ADDRESS_DATA_H
 
+
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <algorithm>
 #include <vector>
 using namespace std;
 
@@ -18,9 +17,9 @@ private:
     string estado;
     int codigoPostal;
     string correoElectronico;
-    long long int numeroTelefono;
+    string numeroTelefono;
 public:
-    AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, int _codigoPostal, string _correoElectronico, long long int _numeroTelefono){
+    AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, int _codigoPostal, string _correoElectronico, string _numeroTelefono){
        this->nombre = _nombre;
         this->apellido = _apellido;
         this->calle =  _calle;
@@ -52,7 +51,7 @@ public:
     string getCorreoElectronico(){
         return this->correoElectronico;
     }
-    int getNmeroTelefono(){
+    string getNmeroTelefono(){
         return this->numeroTelefono;
     }
 
@@ -79,19 +78,22 @@ public:
     void setCorreoElectronico(string _correoElectronico){
         this->correoElectronico = _correoElectronico;
     }
-    void setNumeroTelefono(int _numeroTelefono){
+    void setNumeroTelefono(string _numeroTelefono){
         this->numeroTelefono = _numeroTelefono;
     }
 
+    int contarDirectorios(){
+        int numeroDirectorios = 1;
+        return numeroDirectorios++;
+
+    }
+
     void toString(){
-        cout << "Nombre" << getNombre() << endl;
-        cout << "Apellido" << getApellido() << endl;
-        cout << "Calle" << getCalle() << endl;
-        cout << "Ciudad" << getCiudad() << endl;
-        cout << "Estado" << getEstado() << endl;
-        cout << "Codigo Postal" << getCodigoPostal()<< endl;
-        cout << "Correo electronico" << getCorreoElectronico() << endl;
-        cout << "Numero de telefono" << getNmeroTelefono() << endl;
+        cout << contarDirectorios() << ": "<< getNombre() << " " << getApellido() << endl;
+        cout << getCalle() << endl;
+        cout << getCiudad() << " " << getEstado() << " " << getCodigoPostal() << endl;
+        cout << getCorreoElectronico() << endl;
+        cout << getNmeroTelefono() << endl;
     }
     
     // hace falta el toString() que devuelva el formato de un directorio en la consola
@@ -99,35 +101,68 @@ public:
 
 };
 
-//aqui se hara la logica de buscar contactos y metodos para gestiones la informacion
+
 class AddresBook{
 private:
-    AddressEntry usuarios;
     vector<AddressEntry> entradasDirectorios;
 
 public:
+    void createAddress(){
+        string nombre;
+        string apellido;
+        string calle;
+        string ciudad;
+        string estado;
+        int codigoPostal;
+        string correoElectronico;
+        string numeroTelefono;
 
+        cout << "**Nombre**" << endl;
+        getline(cin, nombre);
+        cout << "**Apellido**" << endl;
+        getline(cin, apellido);
+        cout << "**Calle**" << endl;
+        getline(cin, calle);
+        cout << "**Ciudad**" << endl;
+        getline(cin, ciudad);
+        cout << "**Estado**" << endl;
+        getline(cin, estado);
+        cout << "**Codigo Postal**" << endl;
+        cin >> codigoPostal;
+            cin.ignore();
+        cout << "**Correo Electronico**" << endl;
+        getline(cin, correoElectronico);
+        cout << "**Numero de Telefono**" << endl;
+        cin >> numeroTelefono;
+            cin.ignore();
 
-
-    void createAddres(AddressEntry& entradas){
-        entradasDirectorios.push_back(entradas);
+        AddressEntry ingresoDeDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
+        addAddresVector(ingresoDeDatos);
+        cout << "Se agrego exitosamente" << endl;
+        cout <<"================================="<< endl;
     };
 
-    void searchAddres(AddressEntry& entradas){
+
+    void addAddresVector(AddressEntry& entrada){
+        entradasDirectorios.push_back(entrada);
+    };
+    
+    void searchAddres(){
         //entradasDirectorios.
     };
 
     void deleteAddres(){
-
+        //eliminarDirectorios.
     };
 
     void showAddres(){
-        usuarios.toString();  
+        for(AddressEntry& entrada : entradasDirectorios){
+            entrada.toString();
+        }
     };
 
 };
 
 
 
-
-#endif //ADDRESS_DATA_H 
+#endif // ADDRESS_DATA_H
