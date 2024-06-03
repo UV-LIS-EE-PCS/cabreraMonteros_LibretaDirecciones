@@ -19,7 +19,7 @@ private:
     string codigoPostal;
     string correoElectronico;
     string numeroTelefono;
-public:
+public: //FIXME se refactorizara todo esto 
     AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, string _codigoPostal, string _correoElectronico, string _numeroTelefono){
        this->nombre = _nombre;
         this->apellido = _apellido;
@@ -107,7 +107,7 @@ class AddresBook{
 private:
     vector<AddressEntry> entradasDirectorios;
     ifstream lectorDeArchivos;
-public:
+public://FIXME se refactorizara todo esto
     void createAddress(){
         string nombre;
         string apellido;
@@ -151,7 +151,7 @@ public:
     };
     
     void searchAddres(){
-        //entradasDirectorios.
+        
     };
         //FIXME
     void importAddressTxt(){
@@ -180,8 +180,6 @@ public:
 
         AddressEntry importarDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
         addAddresVector(importarDatos);
-
-
     };
     
     void deleteAddres(){
