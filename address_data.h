@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 using namespace std;
 
 //clase finalizada
@@ -15,11 +16,11 @@ private:
     string calle;
     string ciudad;
     string estado;
-    int codigoPostal;
+    string codigoPostal;
     string correoElectronico;
     string numeroTelefono;
 public:
-    AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, int _codigoPostal, string _correoElectronico, string _numeroTelefono){
+    AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, string _codigoPostal, string _correoElectronico, string _numeroTelefono){
        this->nombre = _nombre;
         this->apellido = _apellido;
         this->calle =  _calle;
@@ -45,7 +46,7 @@ public:
     string getEstado(){
         return this->estado;
     }
-    int getCodigoPostal(){
+    string getCodigoPostal(){
         return this->codigoPostal;
     }
     string getCorreoElectronico(){
@@ -72,7 +73,7 @@ public:
     void setEstado(string _estado){
         this->estado = _estado;
     }
-    void setCodigoPostal(int _codigoPostal){
+    void setCodigoPostal(string _codigoPostal){
         this->codigoPostal = _codigoPostal;
     }
     void setCorreoElectronico(string _correoElectronico){
@@ -83,9 +84,8 @@ public:
     }
 
     int contarDirectorios(){
-        int numeroDirectorios = 1;
-        return numeroDirectorios++;
-
+        int contador = 1;
+        return contador++;
     }
 
     void toString(){
@@ -94,6 +94,7 @@ public:
         cout << getCiudad() << " " << getEstado() << " " << getCodigoPostal() << endl;
         cout << getCorreoElectronico() << endl;
         cout << getNmeroTelefono() << endl;
+        cout << " "<< endl;
     }
     
     // hace falta el toString() que devuelva el formato de un directorio en la consola
@@ -105,7 +106,7 @@ public:
 class AddresBook{
 private:
     vector<AddressEntry> entradasDirectorios;
-
+    ifstream lectorDeArchivos;
 public:
     void createAddress(){
         string nombre;
@@ -113,10 +114,11 @@ public:
         string calle;
         string ciudad;
         string estado;
-        int codigoPostal;
+        string codigoPostal;
         string correoElectronico;
         string numeroTelefono;
 
+        cin.ignore();
         cout << "**Nombre**" << endl;
         getline(cin, nombre);
         cout << "**Apellido**" << endl;
@@ -138,6 +140,7 @@ public:
 
         AddressEntry ingresoDeDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
         addAddresVector(ingresoDeDatos);
+        cout << "   " << endl;
         cout << "Se agrego exitosamente" << endl;
         cout <<"================================="<< endl;
     };
@@ -150,7 +153,37 @@ public:
     void searchAddres(){
         //entradasDirectorios.
     };
+        //FIXME
+    void importAddressTxt(){
+        cout << "ingresa el nombre del archivo" << endl;
+        string nombreArchivo;
+        cin >> nombreArchivo;
 
+        fstream entradaArchivo(nombreArchivo);
+        string nombre;
+        string apellido;
+        string calle;
+        string ciudad;
+        string estado;
+        string codigoPostal;
+        string correoElectronico;
+        string numeroTelefono;
+        cin.ignore();
+        getline(entradaArchivo,nombre);
+        getline(entradaArchivo,apellido);
+        getline(entradaArchivo,calle);
+        getline(entradaArchivo,ciudad);
+        getline(entradaArchivo,estado);
+        getline(entradaArchivo,codigoPostal);
+        getline(entradaArchivo,correoElectronico);
+        getline(entradaArchivo,numeroTelefono);
+
+        AddressEntry importarDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
+        addAddresVector(importarDatos);
+
+
+    };
+    
     void deleteAddres(){
         //eliminarDirectorios.
     };

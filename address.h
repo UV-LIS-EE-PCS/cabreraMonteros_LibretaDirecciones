@@ -41,8 +41,6 @@ private:
     Menu menu;
     AddresBook logica;
 public:
-    
-
     void seleccionarOpcion(){
         bool control = true;
         while(control){
@@ -50,12 +48,13 @@ public:
             char opcion = menu.setOpcion();
             
             switch (opcion){
-                case 'a': /* codigo  */     ; break;
-                case 'b': /* codigo  */     ; break;
+                case 'a': logica.importAddressTxt() ;break;
+                case 'b': logica.createAddress(); break;
                 case 'c': /* codigo  */     ; break;
                 case 'd': /* codigo  */     ; break;
                 case 'e': logica.showAddres()  ; break;
                 case 'f': control = false; cout<<"Hasta Luego..."<< endl;    ; break;
+                default: cout << "Seleccione unas de las opciones presentes \n" << endl;
             };
         };
     };
