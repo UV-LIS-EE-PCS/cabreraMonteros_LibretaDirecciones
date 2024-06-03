@@ -8,115 +8,88 @@
 #include <fstream>
 using namespace std;
 
-//clase finalizada
 class AddressEntry{
 private:
-    string nombre;
-    string apellido;
-    string calle;
-    string ciudad;
-    string estado;
-    string codigoPostal;
-    string correoElectronico;
-    string numeroTelefono;
+    string nombre,apellido,calle,ciudad;
+    string estado,codigoPostal,correoElectronico,numeroTelefono;
 public: //FIXME se refactorizara todo esto 
-    AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, string _codigoPostal, string _correoElectronico, string _numeroTelefono){
-       this->nombre = _nombre;
-        this->apellido = _apellido;
-        this->calle =  _calle;
-        this->ciudad =  _ciudad;
-        this->estado =  _estado;
-        this->codigoPostal = _codigoPostal;
-        this->correoElectronico = _correoElectronico;
-        this->numeroTelefono = _numeroTelefono;
-    };
+    AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, string _codigoPostal, string _correoElectronico, string _numeroTelefono) :
+        nombre(_nombre), apellido(_apellido), calle(_calle), ciudad(_ciudad), estado(_ciudad), 
+        codigoPostal(_codigoPostal), correoElectronico(_correoElectronico), numeroTelefono(_numeroTelefono)
+    {};
 
     string getNombre(){
-        return this->nombre;
+        return nombre;
     }
     string getApellido(){
-        return this->apellido;
+        return apellido;
     }
     string getCalle(){
-        return this->calle;
+        return calle;
     }
     string getCiudad(){
-        return this->ciudad;
+        return ciudad;
     }
     string getEstado(){
-        return this->estado;
+        return estado;
     }
     string getCodigoPostal(){
-        return this->codigoPostal;
+        return codigoPostal;
     }
     string getCorreoElectronico(){
-        return this->correoElectronico;
+        return correoElectronico;
     }
-    string getNmeroTelefono(){
-        return this->numeroTelefono;
+    string getNumeroTelefono(){
+        return numeroTelefono;
     }
 
 
 
     void setNombre(string _nombre){
-        this->nombre = _nombre;
+        nombre = _nombre;
     }
     void setApellido(string _apellido){
-        this->apellido = _apellido;
+        apellido = _apellido;
     }
     void setCalle(string _calle){
-        this->calle = _calle;
+        calle = _calle;
     }
     void setCiudad(string _ciudad){
-        this->ciudad = _ciudad;
+        ciudad = _ciudad;
     }
     void setEstado(string _estado){
-        this->estado = _estado;
+        estado = _estado;
     }
     void setCodigoPostal(string _codigoPostal){
-        this->codigoPostal = _codigoPostal;
+        codigoPostal = _codigoPostal;
     }
     void setCorreoElectronico(string _correoElectronico){
-        this->correoElectronico = _correoElectronico;
+        correoElectronico = _correoElectronico;
     }
     void setNumeroTelefono(string _numeroTelefono){
-        this->numeroTelefono = _numeroTelefono;
+        numeroTelefono = _numeroTelefono;
     }
 
-    int contarDirectorios(){
-        int contador = 1;
-        return contador++;
-    }
-
+    
     void toString(){
-        cout << contarDirectorios() << ": "<< getNombre() << " " << getApellido() << endl;
+        cout <<": "<< getNombre() << " " << getApellido() << endl;
         cout << getCalle() << endl;
         cout << getCiudad() << " " << getEstado() << " " << getCodigoPostal() << endl;
         cout << getCorreoElectronico() << endl;
-        cout << getNmeroTelefono() << endl;
+        cout << getNumeroTelefono() << endl;
         cout << " "<< endl;
     }
-    
-    // hace falta el toString() que devuelva el formato de un directorio en la consola
-
-
 };
-
+   
 
 class AddresBook{
 private:
     vector<AddressEntry> entradasDirectorios;
     ifstream lectorDeArchivos;
-public://FIXME se refactorizara todo esto
+public:
     void createAddress(){
-        string nombre;
-        string apellido;
-        string calle;
-        string ciudad;
-        string estado;
-        string codigoPostal;
-        string correoElectronico;
-        string numeroTelefono;
+        string nombre,apellido,calle,ciudad,estado;
+        string codigoPostal,correoElectronico,numeroTelefono;
 
         cin.ignore();
         cout << "**Nombre**" << endl;
@@ -130,19 +103,19 @@ public://FIXME se refactorizara todo esto
         cout << "**Estado**" << endl;
         getline(cin, estado);
         cout << "**Codigo Postal**" << endl;
-        cin >> codigoPostal;
-            cin.ignore();
+        getline(cin, codigoPostal);
+        //cin.ignore();
         cout << "**Correo Electronico**" << endl;
         getline(cin, correoElectronico);
         cout << "**Numero de Telefono**" << endl;
-        cin >> numeroTelefono;
-            cin.ignore();
+        getline(cin, numeroTelefono);
+        //cin.ignore();
 
         AddressEntry ingresoDeDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
         addAddresVector(ingresoDeDatos);
         cout << "   " << endl;
         cout << "Se agrego exitosamente" << endl;
-        cout <<"================================="<< endl;
+        cout << " " << endl;
     };
 
 
@@ -155,19 +128,14 @@ public://FIXME se refactorizara todo esto
     };
         //FIXME
     void importAddressTxt(){
+        string nombre,apellido,calle,ciudad,estado;
+        string codigoPostal,correoElectronico,numeroTelefono;
+
         cout << "ingresa el nombre del archivo" << endl;
         string nombreArchivo;
         cin >> nombreArchivo;
-
         fstream entradaArchivo(nombreArchivo);
-        string nombre;
-        string apellido;
-        string calle;
-        string ciudad;
-        string estado;
-        string codigoPostal;
-        string correoElectronico;
-        string numeroTelefono;
+
         cin.ignore();
         getline(entradaArchivo,nombre);
         getline(entradaArchivo,apellido);
@@ -186,10 +154,14 @@ public://FIXME se refactorizara todo esto
         //eliminarDirectorios.
     };
 
+
     void showAddres(){
-        for(AddressEntry& entrada : entradasDirectorios){
-            entrada.toString();
-        }
+        for(size_t indice = 0; indice < entradasDirectorios.size(); indice++){
+            int indicador = indice;
+            indicador++;
+            cout << indicador;
+            entradasDirectorios[indice].toString();
+        };
     };
 
 };
