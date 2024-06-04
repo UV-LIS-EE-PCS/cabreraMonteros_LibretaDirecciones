@@ -63,7 +63,3 @@ public:
 
 #endif //ADDRESSBOOKAPLICATION_H
 
-
-
-// notas, lo que falla ahora mismo es el cosntructor que no declaramos en AddressBookApplication
-// por lo que es modificar esto y despues podremos llamar a la clase en la funcion main()

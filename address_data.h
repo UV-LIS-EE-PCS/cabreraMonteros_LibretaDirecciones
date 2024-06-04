@@ -1,7 +1,6 @@
 #ifndef ADDRESS_DATA_H
 #define ADDRESS_DATA_H
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -12,7 +11,7 @@ class AddressEntry{
 private:
     string nombre,apellido,calle,ciudad;
     string estado,codigoPostal,correoElectronico,numeroTelefono;
-public: //FIXME se refactorizara todo esto 
+public:
     AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, string _codigoPostal, string _correoElectronico, string _numeroTelefono) :
         nombre(_nombre), apellido(_apellido), calle(_calle), ciudad(_ciudad), estado(_ciudad), 
         codigoPostal(_codigoPostal), correoElectronico(_correoElectronico), numeroTelefono(_numeroTelefono)
@@ -20,57 +19,55 @@ public: //FIXME se refactorizara todo esto
 
     string getNombre(){
         return nombre;
-    }
+    };
     string getApellido(){
         return apellido;
-    }
+    };
     string getCalle(){
         return calle;
-    }
+    };
     string getCiudad(){
         return ciudad;
-    }
+    };
     string getEstado(){
         return estado;
-    }
+    };
     string getCodigoPostal(){
         return codigoPostal;
-    }
+    };
     string getCorreoElectronico(){
         return correoElectronico;
-    }
+    };
     string getNumeroTelefono(){
         return numeroTelefono;
-    }
-
+    };
 
 
     void setNombre(string _nombre){
         nombre = _nombre;
-    }
+    };
     void setApellido(string _apellido){
         apellido = _apellido;
-    }
+    };
     void setCalle(string _calle){
         calle = _calle;
-    }
+    };
     void setCiudad(string _ciudad){
         ciudad = _ciudad;
-    }
+    };
     void setEstado(string _estado){
         estado = _estado;
-    }
+    };
     void setCodigoPostal(string _codigoPostal){
         codigoPostal = _codigoPostal;
-    }
+    };
     void setCorreoElectronico(string _correoElectronico){
         correoElectronico = _correoElectronico;
-    }
+    };
     void setNumeroTelefono(string _numeroTelefono){
         numeroTelefono = _numeroTelefono;
-    }
+    };
 
-    
     void toString(){
         cout <<": "<< getNombre() << " " << getApellido() << endl;
         cout << getCalle() << endl;
@@ -78,14 +75,14 @@ public: //FIXME se refactorizara todo esto
         cout << getCorreoElectronico() << endl;
         cout << getNumeroTelefono() << endl;
         cout << " "<< endl;
-    }
+    };
 };
    
 
 class AddresBook{
 private:
     vector<AddressEntry> entradasDirectorios;
-    ifstream lectorDeArchivos;
+    ifstream lectorDeArchivo;
 public:
     void createAddress(){
         string nombre,apellido,calle,ciudad,estado;
@@ -104,25 +101,21 @@ public:
         getline(cin, estado);
         cout << "**Codigo Postal**" << endl;
         getline(cin, codigoPostal);
-        //cin.ignore();
         cout << "**Correo Electronico**" << endl;
         getline(cin, correoElectronico);
         cout << "**Numero de Telefono**" << endl;
         getline(cin, numeroTelefono);
-        //cin.ignore();
 
         AddressEntry ingresoDeDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
         addAddresVector(ingresoDeDatos);
         cout << "   " << endl;
-        cout << "Se agrego exitosamente" << endl;
-        cout << " " << endl;
+        cout << "Se agrego exitosamente \n" << endl;
     };
 
 
     void addAddresVector(AddressEntry& entrada){
         entradasDirectorios.push_back(entrada);
     };
-    
     
 
     void searchAddres(){
@@ -146,12 +139,7 @@ public:
         }else cout << "directorio no encontrado" << endl;
     };
 
-
-
-
-
-
-        //FIXME "falta menejar otros casos de lo que podria suceder"
+    //FIXME "falta menejar otros casos de lo que podria suceder"
     void importAddressTxt(){
         string nombre,apellido,calle,ciudad,estado;
         string codigoPostal,correoElectronico,numeroTelefono;
@@ -159,24 +147,28 @@ public:
         cout << "ingresa el nombre del archivo" << endl;
         string nombreArchivo;
         cin >> nombreArchivo;
-        fstream entradaArchivo(nombreArchivo);
+        fstream lectorDeArchivo(nombreArchivo);
+
+        //if(){};
 
         cin.ignore();
-        getline(entradaArchivo,nombre);
-        getline(entradaArchivo,apellido);
-        getline(entradaArchivo,calle);
-        getline(entradaArchivo,ciudad);
-        getline(entradaArchivo,estado);
-        getline(entradaArchivo,codigoPostal);
-        getline(entradaArchivo,correoElectronico);
-        getline(entradaArchivo,numeroTelefono);
+        getline(lectorDeArchivo,nombre);
+        getline(lectorDeArchivo,apellido);
+        getline(lectorDeArchivo,calle);
+        getline(lectorDeArchivo,ciudad);
+        getline(lectorDeArchivo,estado);
+        getline(lectorDeArchivo,codigoPostal);
+        getline(lectorDeArchivo,correoElectronico);
+        getline(lectorDeArchivo,numeroTelefono);
 
         AddressEntry importarDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
         addAddresVector(importarDatos);
+
+
     };
     
-    void deleteAddres(){
 
+    void deleteAddres(){
         cout << " " << endl;
         cout << "introduzca el numero de telefono de la direccion a eliminar" << endl;
         string numeroTelefono;
