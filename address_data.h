@@ -139,33 +139,56 @@ public:
         }else cout << "directorio no encontrado" << endl;
     };
 
-    //FIXME "falta menejar otros casos de lo que podria suceder"
-    void importAddressTxt(){
-        string nombre,apellido,calle,ciudad,estado;
-        string codigoPostal,correoElectronico,numeroTelefono;
 
-        cout << "ingresa el nombre del archivo" << endl;
+    void importAddressTxt() {
+        string nombre, apellido, calle, ciudad, estado;
+        string codigoPostal, correoElectronico, numeroTelefono;
+        bool verificadorArchivoAbierto = false;
+        bool verificadorArchivoVacio = true;
+
+        cout << "Ingresa el nombre del archivo:" << endl;
         string nombreArchivo;
         cin >> nombreArchivo;
-        fstream lectorDeArchivo(nombreArchivo);
+        cout << " " << endl;
 
-        //if(){};
+        ifstream VerificadorArchivo(nombreArchivo);
 
-        cin.ignore();
-        getline(lectorDeArchivo,nombre);
-        getline(lectorDeArchivo,apellido);
-        getline(lectorDeArchivo,calle);
-        getline(lectorDeArchivo,ciudad);
-        getline(lectorDeArchivo,estado);
-        getline(lectorDeArchivo,codigoPostal);
-        getline(lectorDeArchivo,correoElectronico);
-        getline(lectorDeArchivo,numeroTelefono);
+        if (!VerificadorArchivo.is_open()) {
+            cout << "No se encontro ningun archivo con ese nombre" << endl;
+        } else {
+            verificadorArchivoAbierto = true;
+            cout << "Archivo encontrado" << endl;
+        }
 
-        AddressEntry importarDatos(nombre,apellido,calle,ciudad,estado,codigoPostal,correoElectronico,numeroTelefono);
-        addAddresVector(importarDatos);
+        if (verificadorArchivoAbierto) {
+            ifstream archivo(nombreArchivo, ios::ate);
+            if (archivo.tellg() == 0) {
+                verificadorArchivoVacio = true;
+                cout << "El archivo esta vacio" << endl;
+            } else {
+                verificadorArchivoVacio = false;
+            }
+        }
 
+        if (!verificadorArchivoVacio && verificadorArchivoAbierto) {
+            fstream lectorDeArchivo(nombreArchivo);
 
+            cin.ignore();
+            getline(lectorDeArchivo, nombre);
+            getline(lectorDeArchivo, apellido);
+            getline(lectorDeArchivo, calle);
+            getline(lectorDeArchivo, ciudad);
+            getline(lectorDeArchivo, estado);
+            getline(lectorDeArchivo, codigoPostal);
+            getline(lectorDeArchivo, correoElectronico);
+            getline(lectorDeArchivo, numeroTelefono);
+
+            AddressEntry importarDatos(nombre, apellido, calle, ciudad, estado, codigoPostal, correoElectronico, numeroTelefono);
+            addAddresVector(importarDatos);
+            cout << "Se agrego el nuevo directorio correctamente" << endl;
+        };
     };
+
     
 
     void deleteAddres(){
