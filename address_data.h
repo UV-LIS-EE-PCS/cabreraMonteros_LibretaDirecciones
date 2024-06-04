@@ -123,10 +123,35 @@ public:
         entradasDirectorios.push_back(entrada);
     };
     
+    
+
     void searchAddres(){
-        
+        cout << " " << endl;
+        cout << "introduzca el numero de telefono de la direccion" << endl;
+        string numeroTelefono;
+        bool verificador = false;
+        int posicion;
+        cin >> numeroTelefono;
+
+        for(size_t indice = 0; indice < entradasDirectorios.size(); indice++){
+            if(entradasDirectorios[indice].getNumeroTelefono() == numeroTelefono){
+                verificador = true;
+                posicion = indice;
+            };
+        }
+
+        if(verificador == true){
+            cout << "directorio encontrado: \n" << endl;
+            entradasDirectorios[posicion].toString();
+        }else cout << "directorio no encontrado" << endl;
     };
-        //FIXME
+
+
+
+
+
+
+        //FIXME "falta menejar otros casos de lo que podria suceder"
     void importAddressTxt(){
         string nombre,apellido,calle,ciudad,estado;
         string codigoPostal,correoElectronico,numeroTelefono;
@@ -151,7 +176,38 @@ public:
     };
     
     void deleteAddres(){
-        //eliminarDirectorios.
+
+        cout << " " << endl;
+        cout << "introduzca el numero de telefono de la direccion a eliminar" << endl;
+        string numeroTelefono;
+        bool verificador = false;
+        int posicion;
+        cin >> numeroTelefono;
+
+        for(size_t indice = 0; indice < entradasDirectorios.size(); indice++){
+            if(entradasDirectorios[indice].getNumeroTelefono() == numeroTelefono){
+                verificador = true;
+                posicion = indice;
+            };
+        }
+
+        if(verificador == true){
+            cout << "directorio encontrado: \n" << endl;
+            entradasDirectorios[posicion].toString();
+            cout << "Desea eliminarlo"<< endl;
+            cout << "S/N" << endl;
+            
+
+            while(verificador == true){
+                char opcion;
+                cin >> opcion;
+                switch(opcion){
+                case 's':entradasDirectorios.erase(entradasDirectorios.begin() + posicion); cout <<"Se elimino exitosamente"<< endl; verificador = false;break;
+                case 'n': cout<<"La operacion ha sido cancelada"<< endl; verificador = false ;break;
+                default: cout << "Selecciona una de las opciones disponibles \n" << endl;
+                };
+            };
+        };
     };
 
 

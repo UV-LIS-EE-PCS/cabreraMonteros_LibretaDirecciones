@@ -49,11 +49,11 @@ public:
             
             switch (opcion){
                 case 'a': logica.importAddressTxt() ;break;
-                case 'b': logica.createAddress(); break;
-                case 'c': /* codigo  */     ; break;
-                case 'd': /* codigo  */     ; break;
-                case 'e': logica.showAddres()  ; break;
-                case 'f': control = false; cout<<"Hasta Luego..."<< endl;    ; break;
+                case 'b': logica.createAddress()    ;break;
+                case 'c': logica.deleteAddres()     ;break;
+                case 'd': logica.searchAddres()     ;break;
+                case 'e': logica.showAddres()       ;break;
+                case 'f': control = false; cout<<"Hasta Luego..."<< endl;break;
                 default: cout << "Seleccione unas de las opciones presentes \n" << endl;
             };
         };
