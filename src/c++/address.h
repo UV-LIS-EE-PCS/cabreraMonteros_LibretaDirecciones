@@ -1,19 +1,13 @@
 #ifndef ADDRESSBOOKAPLICATION_H
 #define ADDRESSBOOKAPLICATION_H
+
 #include <iostream>
 #include "address_data.h"
-
 using namespace std;
 
 
-
-
-//muestra el menu y las opciones
 class Menu{
-private:
-
 public:
-
     void getMenu(){
         cout<<"=================================="<< endl;
         cout<<"Eliga una opcion del menu"<< endl;
@@ -35,7 +29,6 @@ public:
 };
 
 
-//aqui se manejara la intraccion del usuarioo
 class AddressBookApplication{
 private:
     Menu menu;
