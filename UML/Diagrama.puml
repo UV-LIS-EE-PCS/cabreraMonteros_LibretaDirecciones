@@ -1,0 +1,66 @@
+@startuml libretaDeDirecciones
+
+package AddressBookApplication {
+    class Menu {
+        + void getMenu()
+        + char setOpcion()
+    }
+
+    class AddressBookApplication {
+        - Menu menu
+        - AddresBook logica
+        
+        + void seleccionarOpcion()
+    }
+
+    class AddresBook {
+        - vector<AddressEntry> entradasDirectorios
+        - ifstream lectorDeArchivo
+        
+        + void createAddress()
+        + void addAddresVector(AddressEntry& entrada)
+        + void searchAddres()
+        + void importAddressTxt()
+        + void deleteAddres()
+        + void showAddres()
+    }
+
+    class AddressEntry {
+        - string nombre
+        - string apellido
+        - string calle
+        - string ciudad
+        - string estado
+        - string codigoPostal
+        - string correoElectronico
+        - string numeroTelefono
+        
+        + AddressEntry(string _nombre, string _apellido, string _calle, string _ciudad, string _estado, string _codigoPostal, string _correoElectronico, string _numeroTelefono)
+        + string getNombre()
+        + string getApellido()
+        + string getCalle()
+        + string getCiudad()
+        + string getEstado()
+        + string getCodigoPostal()
+        + string getCorreoElectronico()
+        + string getNumeroTelefono()
+        + void setNombre(string _nombre)
+        + void setApellido(string _apellido)
+        + void setCalle(string _calle)
+        + void setCiudad(string _ciudad)
+        + void setEstado(string _estado)
+        + void setCodigoPostal(string _codigoPostal)
+        + void setCorreoElectronico(string _correoElectronico)
+        + void setNumeroTelefono(string _numeroTelefono)
+        + void toString()
+    }
+
+    AddresBook "1" *-- "many" AddressEntry : contains
+    AddressBookApplication "1" *-- "1" AddresBook : uses
+    AddressBookApplication "1" *-- "1" Menu : uses
+}
+
+@enduml
+
+
+
